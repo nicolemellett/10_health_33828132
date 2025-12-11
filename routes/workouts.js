@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../db');
-const BASE = process.env.HEALTH_BASE_PATH;
+//const BASE = process.env.HEALTH_BASE_PATH;
 
 // List workouts (with optional search)
 router.get('/', async (req, res) => {
@@ -50,13 +50,13 @@ router.get('/personal', async (req, res) => {
 
 // Show form to add
 router.get('/add', (req, res) => {
-  if (!req.session.user) return res.redirect(`${BASE}/login`);
+  if (!req.session.user) return res.redirect('/login');
   res.render('workouts/add', { error: null });
 });
 
 // Add workout
 router.post('/add', async (req, res) => {
-  if (!req.session.user) return res.redirect(`${BASE}/login`);
+  if (!req.session.user) return res.redirect('/login');
   const { title, date, duration, calories, notes } = req.body;
   try {
     await pool.query(

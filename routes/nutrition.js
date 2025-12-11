@@ -49,33 +49,6 @@ router.post('/add-meal', async (req, res) => {
   }
 });
 
-// routes/nutrition.js
-/*router.get('/history', ensureLoggedIn, async (req, res) => {
-  const { date, mealType } = req.query;
-  const userId = req.session.user.id;
 
-  let query = 'SELECT * FROM meals WHERE user_id = ?';
-  const params = [userId];
-
-  if (date) {
-    query += ' AND date = ?';
-    params.push(date);
-  }
-  if (mealType) {
-    query += ' AND meal_type = ?';
-    params.push(mealType);
-  }
-
-  query += ' ORDER BY date DESC';
-
-  try {
-    const [meals] = await pool.query(query, params);
-    res.render('nutrition-history', { meals, search: { date, mealType } });
-  } catch (err) {
-    console.error(err);
-    res.sendStatus(500);
-  }
-});
-*/
 
 module.exports = router;
