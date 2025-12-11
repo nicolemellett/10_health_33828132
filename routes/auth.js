@@ -13,7 +13,8 @@ router.post('/login', async (req, res) => {
     const [rows] = await pool.query('SELECT * FROM users WHERE username = ?', [username]);
     if (rows.length && rows[0].password === password) {
       req.session.user = { id: rows[0].id, username: rows[0].username };
-      return res.redirect('/');
+      //return res.redirect('/');
+      return res.redirect(process.env.HEALTH_BASE_PATH);
     }
     res.render('login', { error: 'Invalid credentials' });
   } catch (err) {
@@ -23,7 +24,7 @@ router.post('/login', async (req, res) => {
 });
 
 router.get('/logout', (req, res) => {
-  req.session.destroy(() => res.redirect('/'));
+  req.session.destroy(() => /*res.redirect('/')); */ res.redirect(process.env.HEALTH_BASE_PATH);
 });
 
 // Simple registration (optional)
