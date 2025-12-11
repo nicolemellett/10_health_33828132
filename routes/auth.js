@@ -24,7 +24,7 @@ router.post('/login', async (req, res) => {
 });
 
 router.get('/logout', (req, res) => {
-  req.session.destroy(() => /*res.redirect('/')); */ res.redirect(process.env.HEALTH_BASE_PATH);
+  req.session.destroy(() => /*res.redirect('/')); */ res.redirect(process.env.HEALTH_BASE_PATH));
 });
 
 // Simple registration (optional)
