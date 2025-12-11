@@ -1,0 +1,9 @@
+home=http://www.doc.gold.ac.uk/usr/408/
+about=http://www.doc.gold.ac.uk/usr/408/about
+timer=http://www.doc.gold.ac.uk/usr/408/timer
+login=http://www.doc.gold.ac.uk/usr/408/login
+register=http://www.doc.gold.ac.uk/usr/408/register
+workouts=http://www.doc.gold.ac.uk/usr/408/workouts
+personalworkouts=http://www.doc.gold.ac.uk/usr/408/workouts/personal
+addworkout=http://www.doc.gold.ac.uk/usr/408/workouts/add
+nutrition=http://www.doc.gold.ac.uk/usr/408/nutrition
