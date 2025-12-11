@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../db');
+const BASE = process.env.HEALTH_BASE_PATH;
 
 // List workouts (with optional search)
 router.get('/', async (req, res) => {
@@ -49,20 +50,20 @@ router.get('/personal', async (req, res) => {
 
 // Show form to add
 router.get('/add', (req, res) => {
-  if (!req.session.user) return res.redirect('/login');
+  if (!req.session.user) return res.redirect('${BASE}/login');
   res.render('workouts/add', { error: null });
 });
 
 // Add workout
 router.post('/add', async (req, res) => {
-  if (!req.session.user) return res.redirect('/login');
+  if (!req.session.user) return res.redirect('${BASE}/login');
   const { title, date, duration, calories, notes } = req.body;
   try {
     await pool.query(
       'INSERT INTO workouts (user_id, title, date, duration_minutes, calories_burned, notes) VALUES (?, ?, ?, ?, ?, ?)',
       [req.session.user.id, title, date || new Date(), duration || null, calories || null, notes || null]
     );
-    res.redirect('/workouts');
+    res.redirect('${BASE}/workouts');
   } catch (err) {
     console.error(err);
     res.render('workouts/add', { error: 'Database error' });
