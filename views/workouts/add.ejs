@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Workout | My Fitness App</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<header>
+  <h1>Add Workout</h1>
+  <a href="/workouts" class="btn">← Back to Workouts</a>
+</header>
+
+<main>
+  <section>
+    <% if (error) { %>
+      <p class="error" style="color: #ff2e8a; font-weight: 600;"><%= error %></p>
+    <% } %>
+
+    <form method="post" action="/workouts/add">
+      <label>
+        Title: 
+        <input name="title" placeholder="Workout title" required>
+      </label>
+
+      <label>
+        Date: 
+        <input name="date" type="date">
+      </label>
+
+      <label>
+        Duration (minutes): 
+        <input name="duration" type="number" placeholder="e.g. 45">
+      </label>
+
+      <label>
+        Calories burned: 
+        <input name="calories" type="number" placeholder="e.g. 300">
+      </label>
+
+      <label>
+        Notes: 
+        <textarea name="notes" placeholder="Optional notes"></textarea>
+      </label>
+
+      <button type="submit" class="btn">Save Workout</button>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2025 My Fitness App</p>
+</footer>
+
+</body>
+</html>

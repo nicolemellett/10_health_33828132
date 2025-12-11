@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nutrition Tracker</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<header>
+  <h1>Nutrition Tracker</h1>
+  <a href="/" class="btn">← Back to Home</a>
+</header>
+
+<main>
+
+  <!-- Section: Daily Totals -->
+  <section>
+    <h2>Daily Totals</h2>
+    <ul>
+      <li>Calories: <%= totals.calories %> kcal</li>
+      <li>Protein: <%= totals.protein %> g</li>
+      <li>Carbs: <%= totals.carbs %> g</li>
+      <li>Fats: <%= totals.fats %> g</li>
+    </ul>
+  </section>
+
+  <!-- Section: Add Meal Form -->
+  <section>
+    <h2>Add a Meal</h2>
+    <form action="/nutrition/add-meal" method="POST">
+      <input type="text" name="description" placeholder="Meal description" required>
+      <input type="number" name="calories" placeholder="Calories" required>
+      <input type="number" name="protein" placeholder="Protein (g)">
+      <input type="number" name="carbs" placeholder="Carbs (g)">
+      <input type="number" name="fats" placeholder="Fats (g)">
+      <select name="mealType" required>
+        <option value="breakfast">Breakfast</option>
+        <option value="lunch">Lunch</option>
+        <option value="dinner">Dinner</option>
+        <option value="snack">Snack</option>
+      </select>
+      <button type="submit" class="btn">Add Meal</button>
+    </form>
+  </section>
+
+  <!-- Section: Meals List -->
+  <section>
+    <h2>Today's Meals</h2>
+    <ul>
+      <% meals.forEach(meal => { %>
+        <li style="background: #ffe5f4; padding: 12px; border-radius: 10px; margin-bottom: 10px;">
+          <strong><%= meal.meal_type %>:</strong> <%= meal.description %> |
+          <%= meal.calories %> kcal, <%= meal.protein %>g P, <%= meal.carbs %>g C, <%= meal.fats %>g F
+        </li>
+      <% }) %>
+    </ul>
+  </section>
+
+  <!-- Section: Macro Doughnut Chart -->
+  <section>
+    <h2>Macros Breakdown</h2>
+    <canvas id="nutritionChart" width="400" height="200"></canvas>
+  </section>
+
+
+</main>
+
+<footer>
+  <p>&copy; 2025 My Fitness App</p>
+</footer>
+
+<!-- Chart.js Script -->
+<script>
+  const ctx = document.getElementById('nutritionChart').getContext('2d');
+  const nutritionChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+          labels: ['Protein', 'Carbs', 'Fats'],
+          datasets: [{
+              label: 'Grams',
+              data: [<%= totals.protein %>, <%= totals.carbs %>, <%= totals.fats %>],
+              backgroundColor: ['#ff4fa0','#ff82c4','#ff2e8a'],
+              borderColor: '#fff',
+              borderWidth: 2
+          }]
+      },
+      options: {
+          responsive: true,
+          plugins: {
+              legend: {
+                  position: 'bottom',
+                  labels: {
+                      font: { size: 14, weight: '600' },
+                      color: '#ff2e8a'
+                  }
+              }
+          }
+      }
+  });
+</script>
+
+</body>
+</html>

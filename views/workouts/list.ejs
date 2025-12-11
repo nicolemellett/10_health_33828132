@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Workouts | My Fitness App</title>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    body { font-family: Arial, sans-serif; padding: 50px; text-align: center; background: #f9f9f9; }
+    header h1 { margin-bottom: 20px; }
+    .btn {
+      background-color: #ff2e8a;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 5px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .btn:hover { background-color: #e0267a; }
+    ul { list-style: none; padding: 0; margin-top: 20px; }
+    li { margin: 10px 0; font-size: 1.1rem; }
+    a { color: #ff2e8a; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    form input { font-size: 1rem; outline: none; }
+    
+    /* Improved search bar */
+    .search-container {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    .search-container input {
+      padding: 10px 15px;
+      border-radius: 8px 0 0 8px;
+      border: 1px solid #ccc;
+      width: 250px;
+    }
+    .search-container input:focus {
+      border-color: #ff2e8a;
+      box-shadow: 0 0 5px rgba(255,46,138,0.5);
+    }
+    .search-container button {
+      border-radius: 0 8px 8px 0;
+      padding: 10px 20px;
+      font-weight: 600;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Workouts</h1>
+  <a href="/" class="btn">← Back to Home</a>
+  <% if (currentUser) { %>
+    <a href="/workouts/add" class="btn">Add Workout</a>
+  <% } %>
+</header>
+
+<main>
+  <!-- Search -->
+  <section class="search-container">
+    <form method="get" action="/workouts">
+      <input name="search" placeholder="Search by title, notes or user" value="<%= search %>">
+      <button type="submit" class="btn">Search</button>
+    </form>
+  </section>
+
+  <!-- Workout list -->
+  <section>
+    <% if (!workouts.length) { %>
+      <p>No workouts found.</p>
+    <% } else { %>
+      <ul>
+        <% workouts.forEach(function(w) { %>
+          <li>
+            <a href="/workouts/<%= w.id %>"><%= w.title %></a> — 
+            <%= w.date.toISOString().slice(0,10) %> — 
+            by <%= w.username || 'Unknown' %>
+          </li>
+        <% }) %>
+      </ul>
+    <% } %>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2025 My Fitness App</p>
+</footer>
+
+</body>
+</html>

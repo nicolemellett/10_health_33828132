@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register | My Fitness App</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<header>
+  <h1>Register</h1>
+  <a href="/" class="btn">← Back to Home</a>
+</header>
+
+<main>
+  <section>
+    <% if (error) { %>
+      <p class="error" style="color: #ff2e8a; font-weight: 600;"><%= error %></p>
+    <% } %>
+
+    <form method="post" action="/register">
+      <label>
+        Username:
+        <input name="username" placeholder="Enter your username" required>
+      </label>
+
+      <label>
+        Password:
+        <input name="password" type="password" placeholder="Enter your password" required>
+      </label>
+
+      <small>Password must be at least 8 characters and include lowercase, uppercase, number, and a special character.</small>
+      <br>
+      <br>
+      <button type="submit" class="btn">Register</button>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2025 My Fitness App</p>
+</footer>
+
+</body>
+</html>

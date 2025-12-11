@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= workout.title %> | My Fitness App</title>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    body { font-family: Arial, sans-serif; padding: 50px; background: #f9f9f9; text-align: center; }
+    h2 { margin-bottom: 20px; color: white; }
+    p { font-size: 1.1rem; margin: 8px 0; }
+    .btn {
+      background-color: #ff2e8a;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: 20px;
+      display: inline-block;
+    }
+    .btn:hover { background-color: #e0267a; }
+    .workout-details { 
+      display: inline-block; 
+      text-align: left; 
+      background: white; 
+      padding: 30px; 
+      border-radius: 12px; 
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+      max-width: 400px; 
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h2><%= workout.title %></h2>
+  </header>
+
+  <main>
+    <div class="workout-details">
+      <p><strong>Date:</strong> <%= new Date(workout.date).toISOString().slice(0,10) %></p>
+      <p><strong>Duration:</strong> <%= workout.duration_minutes || 'N/A' %> minutes</p>
+      <p><strong>Calories burned:</strong> <%= workout.calories_burned || 'N/A' %></p>
+      <p><strong>Notes:</strong> <%= workout.notes || 'None' %></p>
+      <p><strong>Entered by:</strong> <%= workout.username %></p>
+    </div>
+
+    <a href="/workouts" class="btn">← Back to Workouts</a>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 My Fitness App</p>
+  </footer>
+
+</body>
+</html>

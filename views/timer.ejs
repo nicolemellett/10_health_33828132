@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Timer | My Fitness App</title>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    /* Page-specific styling */
+    body { text-align: center; padding: 50px; font-family: Arial, sans-serif; }
+    header h1 { margin-bottom: 20px; }
+    label { display: inline-block; margin: 10px 5px; font-weight: 500; }
+    input { width: 60px; padding: 6px; margin-left: 5px; border-radius: 6px; border: 1px solid #ccc; font-size: 1rem; }
+    #timerDisplay { font-size: 4rem; margin: 30px 0; color: #333; }
+    .btn { background-color: #ff2e8a; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; margin: 5px; font-weight: 600; font-size: 1rem; text-decoration: none; }
+    .btn:hover { background-color: #e0267a; }
+    section ul { list-style: none; padding: 0; }
+    section ul li { margin: 5px 0; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Workout Timer</h1>
+  <a href="/" class="btn">← Back to Home</a>
+</header>
+
+<main>
+  <section>
+    <label>Minutes: <input type="number" id="minutes" value="1" min="0"></label>
+    <label>Seconds: <input type="number" id="seconds" value="0" min="0" max="59"></label>
+
+    <div>
+      <button class="btn" onclick="startTimer()">Start</button>
+      <button class="btn" onclick="resetTimer()">Reset</button>
+    </div>
+
+    <h2 id="timerDisplay">01:00</h2>
+
+    <% if (currentUser) { %>
+    <form method="post" action="/timer/save">
+      <input type="hidden" name="minutes" id="saveMinutes">
+      <input type="hidden" name="seconds" id="saveSeconds">
+      <button class="btn" type="submit" onclick="setSaveValues()">Save Timer</button>
+    </form>
+    <% } %>
+
+    <section>
+      <h3>Previous Timers</h3>
+      <% if (!savedTimers || !savedTimers.length) { %>
+        <p>No saved timers yet.</p>
+      <% } else { %>
+        <ul>
+          <% savedTimers.forEach(t => { %>
+            <li><%= t.minutes %>m : <%= t.seconds %>s — <%= new Date(t.date).toLocaleString() %></li>
+          <% }) %>
+        </ul>
+      <% } %>
+    </section>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2025 My Fitness App</p>
+</footer>
+
+<script>
+  let timer;
+  let totalSeconds = 60;
+
+  function updateDisplay(seconds) {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    document.getElementById('timerDisplay').textContent =
+      `${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;
+  }
+
+  function startTimer() {
+    const mins = parseInt(document.getElementById('minutes').value) || 0;
+    const secs = parseInt(document.getElementById('seconds').value) || 0;
+    totalSeconds = mins * 60 + secs;
+
+    clearInterval(timer);
+    timer = setInterval(() => {
+      if (totalSeconds <= 0) {
+        clearInterval(timer);
+        alert("Time's up!");
+        return;
+      }
+      totalSeconds--;
+      updateDisplay(totalSeconds);
+    }, 1000);
+
+    updateDisplay(totalSeconds);
+  }
+
+  function resetTimer() {
+    clearInterval(timer);
+    totalSeconds = parseInt(document.getElementById('minutes').value) * 60 || 60;
+    updateDisplay(totalSeconds);
+  }
+
+  function setSaveValues() {
+    document.getElementById('saveMinutes').value = document.getElementById('minutes').value;
+    document.getElementById('saveSeconds').value = document.getElementById('seconds').value;
+  }
+
+  updateDisplay(totalSeconds);
+</script>
+
+</body>
+</html>

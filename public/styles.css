@@ -1,0 +1,183 @@
+/* GLOBAL RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* BODY */
+body {
+  font-family: "Inter", Arial, sans-serif;
+  background: #fff5fb; /* ultra-soft pink */
+  padding: 25px;
+  color: #333;
+}
+
+/* HEADER */
+header {
+  background: linear-gradient(135deg, #ff4fa0, #ff82c4);
+  padding: 25px;
+  border-radius: 18px;
+  margin-bottom: 25px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 6px 20px rgba(255, 105, 180, 0.25);
+}
+
+header h1 a {
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 26px;
+}
+
+nav a {
+  color: white;
+  margin-left: 18px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+nav a:hover {
+  opacity: 0.75;
+}
+
+/* MAIN CARD */
+main {
+  background: white;
+  padding: 35px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(255, 120, 180, 0.2);
+}
+
+/* SECTIONS */
+section h2 {
+  font-size: 26px;
+  margin-bottom: 12px;
+  color: #ff2e8a;
+}
+
+/* BUTTONS */
+.btn, section a {
+  display: inline-block;
+  background: linear-gradient(135deg, #ff4fa0, #ff2e8a);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin-bottom: 12px;
+}
+
+.btn:hover, section a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(255, 60, 140, 0.35);
+}
+
+
+
+/* FORM ELEMENTS */
+input, textarea {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid #ff9ccc;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  font-size: 16px;
+  background: #fff0f8;
+}
+
+input:focus, textarea:focus {
+  border-color: #ff2e8a;
+  outline: none;
+  box-shadow: 0 0 6px rgba(255, 45, 135, 0.5);
+}
+
+/* SUBMIT BUTTON */
+button {
+  background: linear-gradient(135deg, #ff4fa0, #ff2e8a);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(255, 60, 140, 0.35);
+}
+
+/* WORKOUT CARDS */
+ul {
+  list-style: none;
+}
+
+ul li {
+  background: #ffe5f4;
+  padding: 20px;
+  border-radius: 14px;
+  margin-bottom: 15px;
+  transition: 0.2s;
+  box-shadow: 0 4px 10px rgba(255, 100, 160, 0.1);
+}
+
+ul li:hover {
+  background: #ffd3ee;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 100, 160, 0.15);
+}
+
+ul li a {
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  margin-top: 25px;
+  color: #777;
+}
+
+/* Styled dropdown to match .btn */
+select {
+  display: inline-block;
+  background: linear-gradient(135deg, #ff4fa0, #ff2e8a);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  appearance: none; /* remove default arrow in some browsers */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  font-family: "Inter", Arial, sans-serif;
+}
+
+/* Hover and focus effects */
+select:hover, select:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(255, 60, 140, 0.35);
+  outline: none;
+}
+
+ul, li {
+  font-family: "Inter", Arial, sans-serif;
+}
+
+main, section, li {
+  font-family: inherit;
+}
